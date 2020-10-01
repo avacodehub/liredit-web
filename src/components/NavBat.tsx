@@ -6,9 +6,9 @@ import { isServer } from "../utils/isServer";
 interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
-  const [{fetching: logoutFetching}, logout] = useLogoutMutation();
+  const [{ fetching: logoutFetching }, logout] = useLogoutMutation();
   const [{ data, fetching }] = useMeQuery({
-    pause: isServer()
+    pause: isServer(),
   });
   let body = null;
 
@@ -31,9 +31,15 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
     body = (
       <Flex>
         <Box mr={4}>{data.me.username}</Box>
-        <Button onClick={() => {
-          logout()
-        }} variant='link' isLoading={logoutFetching}>Logout</Button>
+        <Button
+          onClick={() => {
+            logout();
+          }}
+          variant="link"
+          isLoading={logoutFetching}
+        >
+          Logout
+        </Button>
       </Flex>
     );
   }
